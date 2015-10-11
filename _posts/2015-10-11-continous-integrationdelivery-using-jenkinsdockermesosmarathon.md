@@ -46,7 +46,7 @@ Search and install the following plugins
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-2.png" width="100%">
 
-**Locate the cloud secion in order to configure docker**
+**Locate the Cloud secion in order to configure docker**
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-3.png" width="100%">
 
@@ -56,5 +56,20 @@ edit your /etc/init/docker or /etc/init/docker.io.conf based on your installatio
 
 ```DOCKER_OPTS='-H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock'```
 
+**Now let's locate the Sbt section and configure your sbt installation**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-4.png" width="100%">
 
 ## Main Job
+
+Now let's configure our main job that will trigger all the small jobs for to build
+
+Create a new item, name it and chose Freestyle project
+
+You will be taken to the configuration page
+in the **Source Code Management** section
+add the repo of the project,chose the branch to build, and you might add credentials if this is a private repo
+
+On the **Build Triggers** section chose
+Build when a change is pushed to GitHub
+This how you make sure that when a change is accepted and merged in the branch you wish to build the whole process will start
