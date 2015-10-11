@@ -149,8 +149,8 @@ Let's get our main job to trigger ther other tasks and run the tests in parallel
 
 Chose add build step and chose Trigger/call builds on other projects
 
-src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-14.png" width="100%">
+<src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-14.png" width="100%">
 
 Now let's run the tests in parallel by typping their names comma separated
 
-src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-15.png" width="100%">
+<src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-15.png" width="100%">
