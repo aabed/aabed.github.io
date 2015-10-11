@@ -66,10 +66,20 @@ Now let's configure our main job that will trigger all the small jobs for to bui
 
 Create a new item, name it and chose Freestyle project
 
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-5.png" width="100%">
+
+
 You will be taken to the configuration page
 in the **Source Code Management** section
 add the repo of the project,chose the branch to build, and you might add credentials if this is a private repo
 
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-6.png" width="100%">
+
+
 On the **Build Triggers** section chose
 Build when a change is pushed to GitHub
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-7.png" width="100%">
+
+
 This how you make sure that when a change is accepted and merged in the branch you wish to build the whole process will start
