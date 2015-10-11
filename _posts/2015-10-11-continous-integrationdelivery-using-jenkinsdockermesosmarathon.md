@@ -64,18 +64,26 @@ edit your /etc/init/docker or /etc/init/docker.io.conf based on your installatio
 
 ## Starting Cassandra Docker for our application for testing
 
-Create a new item, name it and chose Freestyle project
+As you can guess from our app's name it uses Cassandra database so we need to start a Cassandra database container for testing purposes
+
+**Create a new item, name it and chose Freestyle project**
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-5.png" width="100%">
 
-Configure the docker section to start the container and bind the required ports to the host
+**Add build step and chose Start/Stop Docker Containers**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-10.png" width="100%">
+
+**Configure the docker section to start the container and bind the required ports to the host**
 
 Well you can use some service discovery tools, but come on we are just building a project
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-8.png" width="100%">
 
 
-As you can guess from our app's name it uses Cassandra database so we need to start a Cassandra database container for testing purposes
+**Add build step and chose Execute Shell*
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-10.png" width="100%">
 
 ## Main Job
 
