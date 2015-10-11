@@ -60,7 +60,11 @@ edit your /etc/init/docker or /etc/init/docker.io.conf based on your installatio
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-4.png" width="100%">
 
+<br>
+
 # Jenkins Jobs
+
+<br>
 
 ## Starting Cassandra Docker for our application for testing
 
@@ -81,9 +85,25 @@ Well you can use some service discovery tools, but come on we are just building 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-8.png" width="100%">
 
 
-**Add build step and chose Execute Shell*
+**Add build step and chose Execute Shell**
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-10.png" width="100%">
+
+**Sleep 10 seconds waiting for the cassandra to fully boot**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-9.png" width="100%">
+
+<br>
+
+## TweetActorsSpec
+
+**Add our beloved repo again**
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-6.png" width="100%">
+
+**Configure Sbt plugin to run the test**
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-11.png" width="100%">
+
+<br>
 
 ## Main Job
 
