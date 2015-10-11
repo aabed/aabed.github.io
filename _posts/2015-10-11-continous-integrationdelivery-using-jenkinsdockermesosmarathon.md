@@ -98,7 +98,7 @@ Well you can use some service discovery tools, but come on we are just building 
 
 ## TweetActorSpec
 
-**Add our beloved repo again**
+**Add our repo**
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-6.png" width="100%">
 
 **Configure Sbt plugin to run the test**
@@ -108,7 +108,7 @@ Well you can use some service discovery tools, but come on we are just building 
 
 ## TweetScannerActorSpec
 
-Let's just copy TweetActorSpec and modify the sbt task
+Let's just copy TweetActorSpec and modify the sbt action
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-12.png" width="100%">
 
