@@ -50,4 +50,11 @@ Search and install the following plugins
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-3.png" width="100%">
 
+to enable docker api interface on your host enable
+edit your /etc/init/docker or /etc/init/docker.io.conf based on your installation
+<br>and update the DOCKER_OPTS variable to the following
+
+```DOCKER_OPTS='-H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock'```
+
+
 ## Main Job
