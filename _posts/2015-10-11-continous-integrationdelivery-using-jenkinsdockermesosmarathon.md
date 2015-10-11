@@ -38,7 +38,16 @@ Search and install the following plugins
 
 - https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
 - https://wiki.jenkins-ci.org/display/JENKINS/sbt+plugin
+- https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
 
 ## Configuring Jenkins
+
+**Open Jenkins configuration page**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-2.png" width="100%">
+
+**Locate the cloud secion in order to configure docker**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-3.png" width="100%">
 
 ## Main Job
