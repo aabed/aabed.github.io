@@ -95,7 +95,8 @@ Well you can use some service discovery tools, but come on we are just building 
 
 <br>
 
-## TweetActorsSpec
+
+## TweetActorSpec
 
 **Add our beloved repo again**
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-6.png" width="100%">
@@ -104,6 +105,21 @@ Well you can use some service discovery tools, but come on we are just building 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-11.png" width="100%">
 
 <br>
+
+## TweetScannerActorSpec
+
+Let's just copy TweetActorSpec and modify the sbt task
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-12.png" width="100%">
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-13.png" width="100%">
+
+**Repeat the same steps for**
+
+- TweetScanActorIntegrationSpec
+- TweetActorsPerformanceSpec
+
+
 
 ## Main Job
 
