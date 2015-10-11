@@ -29,7 +29,16 @@ I will be cutting the process of CI/CD into small jobs, as I was adviced during 
 
 So let's create our jobs
 
-## Installing jenkins plugins
-![]("../imgs/Screenshot-1.png")
+## Installing Jenkins plugins
+
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-1.png" width="100%">
+
+Search and install the following plugins
+
+- https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
+- https://wiki.jenkins-ci.org/display/JENKINS/sbt+plugin
+
+## Configuring Jenkins
 
 ## Main Job
