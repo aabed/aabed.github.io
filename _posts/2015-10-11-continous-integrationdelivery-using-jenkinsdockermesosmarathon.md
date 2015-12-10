@@ -159,3 +159,7 @@ Let's get our main job to trigger ther other tasks and run the tests in parallel
 Chose add build step and chose Trigger/call builds on other projects
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-14.png" width="100%">
+
+Add another build step which will provision the cassandra database with the required tests data
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-16.png" width="100%">
