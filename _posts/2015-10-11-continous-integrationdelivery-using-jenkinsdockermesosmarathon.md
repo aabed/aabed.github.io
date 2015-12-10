@@ -347,7 +347,11 @@ Then choose the job that will deploy the new docker image
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
 
 ### Links
-https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin
-https://docs.docker.com/registry/deploying/
-https://open.mesosphere.com/advanced-course/building-and-running-mesos-dns/
-https://mesosphere.github.io/marathon/docs/deployments.html
+
+[https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin)
+
+[https://docs.docker.com/registry/deploying/](https://docs.docker.com/registry/deploying/)
+
+[https://open.mesosphere.com/advanced-course/building-and-running-mesos-dns/](https://open.mesosphere.com/advanced-course/building-and-running-mesos-dns/)
+
+[https://mesosphere.github.io/marathon/docs/deployments.html](https://mesosphere.github.io/marathon/docs/deployments.html)
