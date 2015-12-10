@@ -98,6 +98,11 @@ sudo /home/vagrant/go/src/github.com/mesosphere/mesos-dns/mesos-dns -v=1 -config
 As the project implies we need Cassandra so we will start a Cassandra cluster and provision it for our first run
 I will do that step manually because it's a one time job
 replace the IP with your marathon host
+this will automatically create the DNS record cassandra.marathon.mesos
+
+***Note***: Modify ``` activator-akka-cassandra/src/main/resources/application.conf ```
+to point to whatever cassandra host or cluster you are running
+
 {% highlight bash %}
 
 curl -X POST  http://192.168.33.10:8080/v2/apps/  -H "Content-type: application/json" -d '{
@@ -177,7 +182,6 @@ edit your /etc/init/docker or /etc/init/docker.io.conf based on your installatio
 
 ## Starting Cassandra Docker for our application for testing
 
-As you can guess from our app's name it uses Cassandra database so we need to start a Cassandra database container for testing purposes
 
 **Create a new item, name it and chose Freestyle project**
 
@@ -345,6 +349,8 @@ Choose add post-build action and chose **Build other projects (manual step)** be
 Then choose the job that will deploy the new docker image
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
+
+
 
 ### Links
 
