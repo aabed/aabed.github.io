@@ -128,7 +128,30 @@ Now let's run the tests in parallel by typping their names comma separated
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-15.png" width="100%">
 
+
+## Project's Build job
+
+We will deliver our app in the form of a docker container
+So let's first prepare our ``` build.sbt ``` to build out docker container and publish it to our private docker registry
+here is the part that we care for in our build.sbt
+
+{% highlight bash %}
+maintainer in Docker := "Ahmad Aabed <ahmad.aabed.m@gmail.com>" // The maintainer that will be added to your Dockerfile
+
+dockerRepository := Some("registry.marathon.mesos:5000") // Domain name of your docker registry
+
+dockerUpdateLatest := true // Overriding the latest version with the current build
+
+dockerBaseImage := "java"
+{% endhighlight %}
+
+Alright, building this with sbt should be a piece of cake
+Create a new freestyle job and add a build step **(Build using sbt)** then configure the sbt section to build and publish the docker image
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-21.png" width="100%">
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-22.png" width="100%">
 <br>
+
 
 ## Main Job
 
@@ -163,3 +186,11 @@ Chose add build step and chose Trigger/call builds on other projects
 Add another build step which will provision the cassandra database with the required tests data
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-16.png" width="100%">
+
+It's all ready for the tests to run
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-17.png" width="100%">
+
+After the tests pass successfully we will build our project artifact which is in this case the a docker container
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-20.png" width="100%">
