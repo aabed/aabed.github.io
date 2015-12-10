@@ -19,15 +19,125 @@ Well, I failed in the interview, because of a lot of things including not doing 
 - Docker/Docker Registry
 - Mesos
 - Marathon
+- Ansible
 
 # The sample project
 - https://github.com/aabed/activator-akka-cassandra
 
 # Get down to business
 
-I will be cutting the process of CI/CD into small jobs, as I was adviced during the interview and also based on a small discussion on devopschat
+I will be cutting the process of CI/CD into small jobs, as I was advised during the interview and also based on a small discussion on devopschat
 
-So let's create our jobs
+Let's start by provisioning our production environment
+
+## Mesos DNS
+
+Mesos DNS provides dynamic DNS naming for services running on a Mesos cluster, Sounds good for service discovery and that's how I will use it
+
+Go to your cluster node where you want to install mesos-DNS
+
+{% highlight bash %}
+sudo yum -y install golang git bind-utils
+mkdir ~/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+go get github.com/tools/godep
+go get github.com/mesosphere/mesos-dns
+cd $GOPATH/src/github.com/mesosphere/mesos-dns
+godep go build .
+{% endhighlight  %}
+
+
+Modify the config.json to use your zookeeper ip and change the port from 8053 to 53 so it looks like this:
+{% highlight json %}
+
+{
+  "zk": "zk://192.168.33.10:2181/mesos",
+  "masters": ["192.168.33.10:5050"],
+  "refreshSeconds": 60,
+  "ttl": 60,
+  "domain": "mesos",
+  "ns": "ns1",
+  "port": 53,
+  "resolvers": ["8.8.8.8"],
+  "timeout": 5,
+  "listener": "0.0.0.0",
+  "SOAMname": "root.ns1.mesos",
+  "SOARname": "ns1.mesos",
+  "SOARefresh": 60,
+  "SOARetry":   600,
+  "SOAExpire":  86400,
+  "SOAMinttl": 60,
+  "dnson": true,
+  "httpon": true,
+  "httpport": 8123,
+  "externalon": true,
+  "recurseon": true
+}
+{% endhighlight  %}
+
+{% highlight bash %}
+
+cp config.json.sample config.json
+
+{% endhighlight  %}
+
+
+In the Marathon GUI, create a new launcher named dns
+and submit that command into it
+don't forget to modify the path to your installation
+{% highlight bash %}
+
+sudo /home/vagrant/go/src/github.com/mesosphere/mesos-dns/mesos-dns -v=1 -config=/home/vagrant/go/src/github.com/mesosphere/mesos-dns/config.json
+{% endhighlight  %}
+
+<br>
+
+
+##Cassandra cluster
+
+As the project implies we need Cassandra so we will start a Cassandra cluster and provision it for our first run
+I will do that step manually because it's a one time job
+replace the IP with your marathon host
+{% highlight bash %}
+
+curl -X POST  http://192.168.33.10:8080/v2/apps/  -H "Content-type: application/json" -d '{
+  "id": "cassandra",
+  "cpus": 0.5,
+  "mem": 256,
+"constraints":[[ "hostname","LIKE","node[1-3]" ]],
+
+"ports": [
+        7000
+    ],
+
+  "instances": 3,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "cassandra",
+"parameters": [
+        { "key": "env", "value": "CASSANDRA_SEEDS=node1,node2,node3" }
+      ],
+
+"forcePullImage": true,
+      "network": "HOST"
+    }
+}
+
+}'
+{% endhighlight  %}
+
+Provision the Cluster with the required data and create the keyspaces
+{% highlight bash %}
+cd activator-akka-cassandra/src/data
+/opt/apache-cassandra/bin/cqlsh cassandra.marathon.mesos -f keyspaces.cql
+/opt/apache-cassandra/bin/cqlsh cassandra.marathon.mesos -f tables.cql -k akkacassandra
+/opt/apache-cassandra/bin/cqlsh cassandra.marathon.mesos -f words.cql -k akkacassandra
+
+{% endhighlight %}
+
+<br>
 
 ## Installing Jenkins plugins
 
@@ -147,10 +257,43 @@ dockerBaseImage := "java"
 
 Alright, building this with sbt should be a piece of cake
 Create a new freestyle job and add a build step **(Build using sbt)** then configure the sbt section to build and publish the docker image
+<br>
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-21.png" width="100%">
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-22.png" width="100%">
 <br>
+
+## Deploying our project's docker image
+Create a new job
+
+Add build step (Execurte shell)
+Then use marathon API to deploy your new docker to your mesos cluster
+{% highlight bash %}
+curl -X PUT  http://192.168.33.10:8080/v2/apps/activator  -H "Content-type: application/json" -d  '{
+  "id": "activator",
+  "cpus": 0.5,
+  "mem": 256,
+"constraints":[[ "hostname","LIKE","node[2]" ]],
+
+
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "registry.marathon.mesos:5000/activator-akka-cassandra",
+
+"forcePullImage": true,
+      "network": "HOST"
+    }
+},
+"upgradeStrategy": {
+    "minimumHealthCapacity": 1
+
+    }
+
+
+}'
+{% endhighlight %}
 
 
 ## Main Job
@@ -194,3 +337,12 @@ It's all ready for the tests to run
 After the tests pass successfully we will build our project artifact which is in this case the a docker container
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-20.png" width="100%">
+
+And finally the job that will deploy our new app image
+Choose add post-build action and chose **Build other projects (manual step)**
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-23.png" width="100%">
+
+Then choose the job that will deploy the new docker image
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
