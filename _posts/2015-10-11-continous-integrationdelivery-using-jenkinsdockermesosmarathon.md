@@ -119,7 +119,16 @@ Let's just copy TweetActorSpec and modify the sbt action
 - TweetScanActorIntegrationSpec
 - TweetActorsPerformanceSpec
 
+## Tests Job
 
+Let's wrap the tests tasks in a one big task
+as we did many times so far start by creating a freestyle job
+
+Now let's run the tests in parallel by typping their names comma separated
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-15.png" width="100%">
+
+<br>
 
 ## Main Job
 
@@ -150,7 +159,3 @@ Let's get our main job to trigger ther other tasks and run the tests in parallel
 Chose add build step and chose Trigger/call builds on other projects
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-14.png" width="100%">
-
-Now let's run the tests in parallel by typping their names comma separated
-
-<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-15.png" width="100%">
