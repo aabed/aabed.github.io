@@ -19,7 +19,6 @@ Well, I failed in the interview, because of a lot of things including not doing 
 - Docker/Docker Registry
 - Mesos
 - Marathon
-- Ansible
 
 # The sample project
 - https://github.com/aabed/activator-akka-cassandra
@@ -339,10 +338,16 @@ After the tests pass successfully we will build our project artifact which is in
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-20.png" width="100%">
 
 And finally the job that will deploy our new app image
-Choose add post-build action and chose **Build other projects (manual step)**
+Choose add post-build action and chose **Build other projects (manual step)** because you know, maybe you don't want to deploy that version right now so it will wait for a manual triger
 
-<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-23.png" width="100%">
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-23.png" width="50%">
 
 Then choose the job that will deploy the new docker image
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
+
+### Links
+https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin
+https://docs.docker.com/registry/deploying/
+https://open.mesosphere.com/advanced-course/building-and-running-mesos-dns/
+https://mesosphere.github.io/marathon/docs/deployments.html
