@@ -76,9 +76,9 @@ then you use curl or rest client to send that JSON to the API URI in my case it 
 curl -X POST http://192.168.33.10:8080/v2/apps -d @/vagrant/outyet.json -H "Content-type: application/json"
 {% endhighlight %}
 
- I started learning from here https://open.mesosphere.com/advanced-course/introduction/
+ I started learning from here [https://open.mesosphere.com/advanced-course/introduction/](https://open.mesosphere.com/advanced-course/introduction/)
 
- And I ended up building my test environment using this https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/
+ And I ended up building my test environment using this [https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/](https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/)
  You can check them if you want to build your own lap
 
 ## Mesos DNS
@@ -226,9 +226,9 @@ cd activator-akka-cassandra/src/data
 
 Search and install the following plugins
 
-- https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
-- https://wiki.jenkins-ci.org/display/JENKINS/sbt+plugin
-- https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
+- [https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin)
+- [https://wiki.jenkins-ci.org/display/JENKINS/sbt+plugin](https://wiki.jenkins-ci.org/display/JENKINS/sbt+plugin)
+- [https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
 
 ## Configuring Jenkins
 
@@ -446,6 +446,8 @@ Here is how the build will go
 6. All of the four tests will run in parallel
 7. Once the tests passes the main job will trigger the build docker job
 8. If the build went successfully the main job again will trigger the deployment job which will deploy the app docker using marathon
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/pipeline.png" width="100%">
 
 
 
