@@ -27,7 +27,59 @@ Well, I failed in the interview, because of a lot of things including not doing 
 
 I will be cutting the process of CI/CD into small jobs, as I was advised during the interview and also based on a small discussion on devopschat
 
-Let's start by provisioning our production environment
+Let's start by provisioning our environment
+
+## Mesos and Marathon
+Well, a friend of mine told me about , so I said let's learn it, and then I though it will be a good practice to deploy using it
+
+### Mesos
+Apache Mesos abstracts CPU, memory, storage, and other compute resources away from machines (physical or virtual), enabling fault-tolerant and elastic distributed systems to easily be built and run effectively.
+It's the underlying cluster management framework that groups any computing resources you have in one large pool
+
+Mesos uses zookeeper to keep track of the current leader of the master servers.
+
+### Zookeeper
+ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
+
+### Marathon
+ A cluster-wide init and control system for services in cgroups or Docker containers
+ It's job is to run your jobs on the cluster nodes provided by mesos in an init fashion to make sure your service is running and fault-tolerant,so if a job is killed it will be spawned just like the usual init system but this time on the scale of cluster so it will start on whatever node available or based on your settings
+
+ So I tell marathon I want to run "nc -l 8080" for example, it will ask mesos for resources, and then run the command on the node that have enough resources, if I went to that node and killed the job, marathon will start it again
+
+ Marathon accepts the job definition through either it's gui or through it's REST API
+
+ An example will be
+
+ {% highlight json %}
+ {
+  "id": "outyet",
+  "cpus": 0.2,
+  "mem": 20.0,
+  "instances": 1,
+  "constraints": [["hostname", "UNIQUE", ""]],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "outyet",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0, "servicePort": 0, "protocol": "tcp" }
+      ]
+    }
+  }
+}
+{% endhighlight %}
+
+then you use curl or rest client to send that JSON to the API URI in my case it was
+{% highlight bash %}
+curl -X POST http://192.168.33.10:8080/v2/apps -d @/vagrant/outyet.json -H "Content-type: application/json"
+{% endhighlight %}
+
+ I started learning from here https://open.mesosphere.com/advanced-course/introduction/
+
+ And I ended up building my test environment using this https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/
+ You can check them if you want to build your own lap
 
 ## Mesos DNS
 
@@ -92,8 +144,31 @@ sudo /home/vagrant/go/src/github.com/mesosphere/mesos-dns/mesos-dns -v=1 -config
 
 <br>
 
+## Docker registry
 
-##Cassandra cluster
+I started a docker registry on mesos using marathon by applying the following JSON
+
+{% highlight json %}
+{
+  "id": "registry",
+  "cpus": 0.2,
+  "mem": 64,
+"constraints":[[ "hostname","LIKE","node1" ]],
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "registry:2",
+      "network": "HOST"
+    }
+  }
+}
+{% endhighlight %}
+
+So my registry will be at registry.mesos.marathon:5000
+
+
+## Cassandra cluster
 
 As the project implies we need Cassandra so we will start a Cassandra cluster and provision it for our first run
 I will do that step manually because it's a one time job
@@ -142,6 +217,7 @@ cd activator-akka-cassandra/src/data
 {% endhighlight %}
 
 <br>
+
 
 ## Installing Jenkins plugins
 
@@ -349,6 +425,27 @@ Choose add post-build action and chose **Build other projects (manual step)** be
 Then choose the job that will deploy the new docker image
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
+
+## Conclusion and expected scenario
+
+Here is our infrastructure
+
+* Four Mesos nodes
+* Docker registry on node1
+* Mesos DNS on node1
+* Cassandra cluster running on 3 of them using marathon
+* Our app running on one node
+
+Here is how the build will go
+
+1. A change is pushed to github
+2. Our main job is triggered
+3. Main job will trigger Cassandra job
+4. Cassandra job will start Cassandra docker for tests
+5. Then the Tests job will run
+6. All of the four tests will run in parallel
+7. Once the tests passes the main job will trigger the build docker job
+8. If the build went successfully the main job again will trigger the deployment job which will deploy the app docker using marathon
 
 
 
