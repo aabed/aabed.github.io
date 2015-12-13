@@ -207,14 +207,16 @@ curl -X POST  http://192.168.33.10:8080/v2/apps/  -H "Content-type: application/
   "id": "cassandra",
   "cpus": 0.5,
   "mem": 256,
-"constraints":[[ "hostname","LIKE","node[1-3]" ]],
+"constraints":[
+[ "hostname","LIKE","node[1-3]" ],
+["hostname", "UNIQUE"]
+],
 
 "ports": [
         7000
     ],
 
   "instances": 3,
-  "constraints": [["hostname", "UNIQUE"]],
   "container": {
     "type": "DOCKER",
     "docker": {
