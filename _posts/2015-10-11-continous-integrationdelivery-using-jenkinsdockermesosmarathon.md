@@ -32,7 +32,7 @@ Here is how the build will go
 7. Once the tests passes the main job will trigger the build docker job
 8. If the build went successfully the main job again will trigger the deployment job which will deploy the app docker using marathon
 
-<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/pipeline.png" width="100%">
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/pipeline.png" width="150%">
 
 # The tools
 - Jenkins
