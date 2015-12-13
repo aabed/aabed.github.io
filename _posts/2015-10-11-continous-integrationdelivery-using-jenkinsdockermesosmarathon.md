@@ -214,6 +214,7 @@ curl -X POST  http://192.168.33.10:8080/v2/apps/  -H "Content-type: application/
     ],
 
   "instances": 3,
+  "constraints": [["hostname", "UNIQUE"]],
   "container": {
     "type": "DOCKER",
     "docker": {
