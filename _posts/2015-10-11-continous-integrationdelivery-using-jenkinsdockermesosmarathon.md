@@ -53,7 +53,7 @@ I will be cutting the process of CI/CD into small jobs, as I was advised during 
 Let's start by provisioning our environment
 
 ## Mesos and Marathon
-Well, a friend of mine told me about , so I said let's learn it, and then I though it will be a good practice to deploy using it
+Well, a friend of mine told me about it , so I said let's learn it, and then I though it will be a good practice to deploy using it
 
 ### Mesos
 Apache Mesos abstracts CPU, memory, storage, and other compute resources away from machines (physical or virtual), enabling fault-tolerant and elastic distributed systems to easily be built and run effectively.
@@ -102,7 +102,7 @@ curl -X POST http://192.168.33.10:8080/v2/apps -d @/vagrant/outyet.json -H "Cont
  I started learning from here [https://open.mesosphere.com/advanced-course/introduction/](https://open.mesosphere.com/advanced-course/introduction/)
 
  And I ended up building my test environment using this [https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/](https://open.mesosphere.com/advanced-course/recreating-the-cluster-using-ansible/)
- You can check them if you want to build your own lap
+ You can check them if you want to build your own lab
 
 ## Mesos DNS
 
