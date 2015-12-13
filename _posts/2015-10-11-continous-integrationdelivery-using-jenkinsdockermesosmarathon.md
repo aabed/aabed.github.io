@@ -11,6 +11,29 @@ A few months ago I got through an interview with a company. I was asked to devel
 
 Well, I failed in the interview, because of a lot of things including not doing the task as it should be,So here I am trying to make things go the right way, after researching and studying
 
+# The plan
+
+Here is our planned infrastructure
+
+* Four Mesos nodes
+* Docker registry on node1
+* Mesos DNS on node1
+* Cassandra cluster running on 3 of them using marathon
+* Our app running on one node
+
+Here is how the build will go
+
+1. A change is pushed to github
+2. Our main job is triggered
+3. Main job will trigger Cassandra job
+4. Cassandra job will start Cassandra docker for tests
+5. Then the Tests job will run
+6. All of the four tests will run in parallel
+7. Once the tests passes the main job will trigger the build docker job
+8. If the build went successfully the main job again will trigger the deployment job which will deploy the app docker using marathon
+
+<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/pipeline.png" width="100%">
+
 # The tools
 - Jenkins
   - sbt plugin
@@ -426,28 +449,7 @@ Then choose the job that will deploy the new docker image
 
 <img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/Screenshot-18.png" width="100%">
 
-## Conclusion and expected scenario
 
-Here is our infrastructure
-
-* Four Mesos nodes
-* Docker registry on node1
-* Mesos DNS on node1
-* Cassandra cluster running on 3 of them using marathon
-* Our app running on one node
-
-Here is how the build will go
-
-1. A change is pushed to github
-2. Our main job is triggered
-3. Main job will trigger Cassandra job
-4. Cassandra job will start Cassandra docker for tests
-5. Then the Tests job will run
-6. All of the four tests will run in parallel
-7. Once the tests passes the main job will trigger the build docker job
-8. If the build went successfully the main job again will trigger the deployment job which will deploy the app docker using marathon
-
-<img src="https://raw.githubusercontent.com/aabed/aabed.github.io/master/imgs/pipeline.png" width="100%">
 
 
 
