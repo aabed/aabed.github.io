@@ -6,7 +6,7 @@ category:
 tags: ["CI/CD","docker","jenkins","mesos","marathon","devops","continous integration","continous delivery"]
 ---
 {% include JB/setup %}
-# The History ____
+# The History
 A few months ago I got through an interview with a company. I was asked to develop a complete CI/CD pipeline for a sample software.
 
 Well, I failed in the interview, because of a lot of things including not doing the task as it should be,So here I am trying to make things go the right way, after researching and studying
