@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Continous Integration/Delivery Using (Jenkins,Docker,Mesos,Marathon.."
+title: "Continuous Integration, Delivery Using Mesos,Jenkins,Docker,Marathon.."
 description: "Building a CI/CD pipeline for a scala sample project usning different technologies"
 category:
 tags: ["CI/CD","docker","jenkins","mesos","marathon","devops","continous integration","continous delivery"]
