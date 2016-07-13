@@ -23,14 +23,14 @@ Builder creates Docker images to be run elsewhere on the Deis platform. Builder 
 On every node of your Deis cluster do the following
 
 ```sh
-docker run -it deis/registry /bin/sh
+docker run -it --privileged=true deis/builder:<version> /bin/sh
 docker login <your credentials and address>
 ```
 
 Without closing the shell in the container, commit your changes overriding the current image of deis/registry
 
 ```sh
-docker commit <container id> deis/registry:latest
+docker commit <container id> deis/builder:<version>
 ```
 and here you go your builders can now pull private images from your registry
 Whenever you feel like upgrading the builder image just pull the latest and patch it
