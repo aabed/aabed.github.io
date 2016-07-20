@@ -1,4 +1,5 @@
 {% capture jbcache %}
+{% include JB/syntax.css %}
   <!--
   - Dynamically set liquid variables for working with URLs/paths
   -->
