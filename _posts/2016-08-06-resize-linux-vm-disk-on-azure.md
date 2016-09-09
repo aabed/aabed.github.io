@@ -3,7 +3,7 @@ layout: post
 title: "Resize Linux VM disk on Azure"
 description: ""
 category:
-tags: []
+tags: ["Azure"]
 ---
 {% include JB/setup %}
 # How to resize a Linux VM disk on Azure
@@ -26,8 +26,8 @@ tags: []
 
  ![alt text](https://github.com/aabed/aabed.github.io/raw/master/imgs/azure_4.png)
 
- * Resize it and click save
 
+ * Resize it and click save
  * Now start the machine back again
  * Login to the machine
  * Use fdisk to expand the disk
@@ -35,7 +35,6 @@ tags: []
  ![alt text](https://github.com/aabed/aabed.github.io/raw/master/imgs/azure_5.png)
 
 The disk name may differ on you machine
-
 
  * After the reboot you may need to run
 
