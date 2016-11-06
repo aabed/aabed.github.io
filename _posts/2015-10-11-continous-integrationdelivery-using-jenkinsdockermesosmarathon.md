@@ -5,6 +5,7 @@ description: "Building a CI/CD pipeline for a scala sample project usning differ
 category:
 tags: ["CI/CD","docker","jenkins","mesos","marathon","devops","continous integration","continous delivery"]
 ---
+{% seo %}
 {% include JB/setup %}
 # The History
 A few months ago I got through an interview with a company. I was asked to develop a complete CI/CD pipeline for a sample software.
