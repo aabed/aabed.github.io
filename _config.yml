@@ -10,6 +10,7 @@ highlighter: pygments
 #
 gems:
       - jekyll-seo-tag
+      - jekyll-sitemap
 
 title : Aabed
 tagline: NULL

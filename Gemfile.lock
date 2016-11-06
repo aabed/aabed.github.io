@@ -129,6 +129,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-seo-tag
+  jekyll-sitemap
   pygments.rb
   wdm
 
