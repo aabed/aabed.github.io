@@ -3,7 +3,7 @@ layout: post
 title: "Akka cluster on Kubernetes using petsets "
 description: ""
 category:
-tags: []
+tags: ["Akka","kubernetes","petsets"]
 ---
 {% seo %}
 {% include JB/setup %}

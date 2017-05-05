@@ -3,8 +3,9 @@ layout: post
 title: "The DevOps culture in action"
 description: ""
 category:
-tags: []
+tags: ["DevOps","culture"]
 ---
+{% seo %}
 {% include JB/setup %}
 
 ## DevOps culture, I guess
