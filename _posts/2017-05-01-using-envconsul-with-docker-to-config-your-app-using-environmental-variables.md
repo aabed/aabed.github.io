@@ -84,47 +84,16 @@ In the following two videos you will see how changing the value on consul will r
 So, what is left is using it inside Docker (or moby now :/)
 Well you can use it in many ways
 
-
-{% highlight %}
-FROM python:2.7-alpine
-ADD envconsul /usr/bin
-ADD app.py /app.py
-ADD requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-ENTRYPOINT ["envconsul","-consul", "myconsulserver.example.com","-prefix","/"]
-CMD ["python","/app.py"]
-
-{% endhighlight %}
+<script src="https://gist.github.com/aabed/47cde2b3c2e060095f4f18fbf3041160.js"></script>
 
 OR.
 
-
-{% highlight %}
-FROM python:2.7-alpine
-RUN wget https://releases.hashicorp.com/envconsul/0.6.1/envconsul_0.6.1_linux_amd64.zip&&unzip envconsul_0.6.1_linux_amd64.zip\
-&& ln -sf $PWD/envconsul /usr/local/bin
-ADD app.py /app.py
-ADD requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-ENTRYPOINT ["envconsul","-consul", "myconsulserver.example.com","-prefix","/"]
-CMD ["python","/app.py"]
-
-{% endhighlight %}
-
+<script src="https://gist.github.com/aabed/b0e99089ac3eccf84b47c70e53518102.js"></script>
 
 OR.
 
-{% highlight %}
+<script src="https://gist.github.com/aabed/3690e1eb656653a6acffafd956afc5fd.js"></script>
 
-FROM python:2.7-alpine
-RUN wget https://releases.hashicorp.com/envconsul/0.6.1/envconsul_0.6.1_linux_amd64.zip&&unzip envconsul_0.6.1_linux_amd64.zip\
-&& ln -sf $PWD/envconsul /usr/local/bin
-ADD app.py /app.py
-ADD requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-ENTRYPOINT envconsul -consul 172.17.0.2:8500 -prefix $PREFIX python /app.py
-
-{% endhighlight %}
 
 and then you can pass the prefix in the runtime `docker run -e "PREFIX=/ myimage`
 
