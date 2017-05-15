@@ -13,7 +13,7 @@ I don't why but seems like sbt multi-module is a good thing :), so I got a lot o
 So here is how to create docker images for those multi-module projects
 
 let's clone the sample repo for this post
-Since I don't know scala I asked my beautiful wife to write this sample project, thanks honey (https://twitter.com/MennaEssa)
+Since I don't know scala I asked my beautiful wife to write this sample project, thanks honey [@Menna](https://twitter.com/MennaEssa)
 <br>
 {% highlight bash %}
 git clone https://github.com/aabed/sbt-multi-module-project-sample.git
