@@ -7,7 +7,6 @@ tags: ["kubernetes","jenkins","continuous","deployment"]
 ---
 {% include JB/setup %}
 {% seo %}
-{% include JB/setup %}
 {{ content | reading_time_as_i }}
 
 Today I want to share how I am deploying to Kubernetes using Jenkins
@@ -73,7 +72,7 @@ node {
 <br>
 You can ignore the certificate if you checked "Disable https certificate check"
 
-**Note** the `withKubernetes` function is no longer supported you may find references to it in other tutorials or in [Kohsuke Kawaguchi's talk](https://www.youtube.com/watch?v=PFCSSiT-UUQ&t=337s) 
+**Note** the `withKubernetes` function is no longer supported you may find references to it in other tutorials or in [Kohsuke Kawaguchi's talk](https://www.youtube.com/watch?v=PFCSSiT-UUQ&t=337s)
 but it doesn't work
 
 <div id="fb-root"></div>
