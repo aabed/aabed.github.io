@@ -7,7 +7,6 @@ tags: ["kubernetes","jenkins","continuous","deployment"]
 ---
 {% include JB/setup %}
 {% seo %}
-{{ content | reading_time_as_i }}
 
 Today I want to share how I am deploying to Kubernetes using Jenkins
 
